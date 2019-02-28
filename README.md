@@ -134,7 +134,7 @@ Comment: Very fast!
 
 Command: ```python2 bot.py --dns 8.8.8.8 --hostnames domains_cached.dat --threads 50```
 
-
+ 
 
 ### Quad9 Public DNS
 ```
