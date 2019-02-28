@@ -96,7 +96,7 @@ Avg speed: 0.124706980688 sec.
 ```
 Comment: Almost no throtling. Very stable
 
-Command: ```python2 bot.py --dns 9.9.9.9 --hostnames domains.dat --threads 50```
+Command: ```python2 bot.py --dns 9.9.9.9 --hostnames domains_cached.dat --threads 50```
 
 ### 3. Cloudflare Public DNS 
 ```
@@ -112,5 +112,5 @@ Avg speed: 0.0599012204579 sec.
 
 Comment: Throttling is huge. 
 
-Command: ```python2 bot.py --dns 1.1.1.1 --hostnames domains.dat --threads 50```
+Command: ```python2 bot.py --dns 1.1.1.1 --hostnames domains_cached.dat --threads 50```
 
