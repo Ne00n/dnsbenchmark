@@ -47,17 +47,17 @@ Comment: Almost no throtling. Very stable
 
 ### 3. Cloudflare Public DNS 
 ```
-DNS: 1.1.1.1
+ DNS: 1.1.1.1
 Hostnames: 1000000
 Threads: 50
-Runtime: 18.3919110298 sec.
-Total tested: 150 [ 100 % ]
-Good: 9 [ 6.00 % ]
-Failed: 141 [ 94.00 % ]
-Avg speed: 0.429585642285
+Runtime: 15.4974639416 sec.
+Total tested: 1359 [ 100 % ]
+Good: 1344 [ 98.90 % ]
+Failed: 15 [ 1.10 % ]
+Avg speed: 0.254886035054 sec.
 ```
 
-Comment: Throttling is huge. Not messurable at all. When they started service, this was way fastest, unthrottled DNS. For cached DNS requests
+Comment: Fast and reliable
 
 
 
@@ -103,14 +103,57 @@ Command: ```python2 bot.py --dns 9.9.9.9 --hostnames domains_cached.dat --thread
 DNS: 1.1.1.1
 Hostnames: 9
 Threads: 50
-Runtime: 18.3657209873 sec.
-Total tested: 151 [ 100 % ]
-Good: 14 [ 9.27 % ]
-Failed: 137 [ 90.73 % ]
-Avg speed: 0.0599012204579 sec.
+Runtime: 4.34631204605 sec.
+Total tested: 755 [ 100 % ]
+Good: 755 [ 100.00 % ]
+Failed: 0 [ 0.00 % ]
+Avg speed: 0.110835994316 sec.
 ```
 
-Comment: Throttling is huge. 
+Comment: Fast and reliable.
 
 Command: ```python2 bot.py --dns 1.1.1.1 --hostnames domains_cached.dat --threads 50```
 
+
+
+
+
+
+
+# Docker
+Running docker:
+
+1. **Build**: 
+```
+docker build -t dnsbenchmark .
+```
+
+2. **Run**: 
+
+```
+docker run --restart=always --name dnsbenchmark_instance -d -t dnsbenchmark 
+```
+
+
+3. **Bash (if you need)**: 
+```
+docker exec -i -t dnsbenchmark_instance /bin/bash
+```
+
+4. **Stop and remove**:
+```
+docker stop dnsbenchmark_instance
+docker rm dnsbenchmark_instance 
+docker rmi dnsbenchmark
+```
+
+5. **Logs**
+```
+docker logs -f dnsbenchmark_instance
+```
+
+
+6. **Start dnsbenchmark**
+```
+docker exec -i -t dnsbenchmark_instance sh -c "python2 bot.py --dns 1.1.1.1 --hostnames domains.dat --threads 30"
+```
