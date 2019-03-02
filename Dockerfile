@@ -7,6 +7,7 @@ COPY . ./
 # install python2
 RUN apt-get update
 RUN apt-get install python -y
+RUN apt-get install host -y
 
 
 # cleanup
