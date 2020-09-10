@@ -9,7 +9,7 @@ import socket
 import struct
 
 try:
-    import thread
+    import _thread
 except:
     import _thread as thread
 
@@ -40,7 +40,7 @@ class dns_bench():
 
         self.hostnames = {}
         self.load_hostnames()
-        self.mutex = thread.allocate_lock()
+        self.mutex = _thread.allocate_lock()
 
         self.stats = {
             'total': 0,
@@ -69,7 +69,7 @@ class dns_bench():
         except:
             logger.dump('load_hostnames(): %s' %(str(sys.exc_info())), 'critical')
 
-        self.hostnames = self.hostnames.keys()
+        self.hostnames = list(self.hostnames.keys())
         self.hostnames = list(self.hostnames)
 
 
@@ -178,11 +178,11 @@ class dns_bench():
 
             if it % 2 == 0:
                 hostname = random.choice(self.hostnames)
-                thread.start_new_thread(self.check, (hostname, 'a'))
+                _thread.start_new_thread(self.check, (hostname, 'a'))
             else:
                 random_ip = random.randint(1, 0xffffffff)
                 random_ip = socket.inet_ntoa(struct.pack('>I', random_ip))
-                thread.start_new_thread(self.check, (random_ip, 'ptr'))
+                _thread.start_new_thread(self.check, (random_ip, 'ptr'))
 
             if it % 100 == 0:
                 self.print_stats()
